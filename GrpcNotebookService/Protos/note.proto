@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcNotebookService";
+
+package note;
+
+service NoteService {
+	rpc CreateNote (NoteRequest) returns (NoteReply);
+}
+
+message NoteRequest {
+	string topic = 1;
+	string text = 2;
+	string timestamp = 3;
+}
+
+message NoteReply {
+	string message = 1;
+}

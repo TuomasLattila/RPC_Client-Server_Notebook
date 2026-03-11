@@ -1,3 +1,4 @@
 <Solution>
-  <Project Path="ConsoleAppServer/ConsoleAppServer.csproj" />
+  <Project Path="ConsoleAppClient/ConsoleAppClient.csproj" Id="6427a6a4-6c0c-4d87-9c01-39cc30a81f16" />
+  <Project Path="GrpcNotebookService/GrpcNotebookService.csproj" Id="693a1d38-cf94-468f-ad37-4d800adcd483" />
 </Solution>
