@@ -10,8 +10,9 @@ service NoteService {
 
 message NoteRequest {
 	string topic = 1;
-	string text = 2;
-	string timestamp = 3;
+	string title = 2;
+	string text = 3;
+	string timestamp = 4;
 }
 
 message NoteReply {

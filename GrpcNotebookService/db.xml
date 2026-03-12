@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <topic name="Test topic: Animals">
+    <note name="cats better than dogs">
+      <text>Cats are funny</text>
+      <timestamp>03/12/26 - 10:09:52</timestamp>
+    </note>
+    <note name="undulats are social animals">
+      <text>undulds are known to need partner, otherwise they are depressed</text>
+      <timestamp>03/12/26 - 10:13:26</timestamp>
+    </note>
+  </topic>
+  <topic name="Test topic: cars">
+    <note name="ferrari F40 is sick">
+      <text>please sell me F40!!!!</text>
+      <timestamp>03/12/26 - 10:17:25</timestamp>
+    </note>
+  </topic>
+</data>
