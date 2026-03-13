@@ -16,5 +16,23 @@ namespace GrpcNotebookService.Services
                 Message = $"The note with topic of {request.Topic} is received successfully"
             });
         }
+
+        public override Task<GetTopicsReply> GetTopics(GetTopicsRequest request, ServerCallContext context)
+        {
+            logger.LogInformation("The request to get all topics is received"); // Log the request for debugging purposes
+            return Task.FromResult(new GetTopicsReply
+            {
+                Topics = { xmlService.GetTopics() } // Get the list of topics from the XML file using the XMLService and return it in the response
+            });
+        }
+
+        public override Task<GetNotesPerTopicReply> GetNotesPerTopic(GetNotesPerTopicRequest request, ServerCallContext context)
+        {
+            logger.LogInformation($"The request to get notes for topic of {request.Topic} is received"); // Log the request for debugging purposes
+            return Task.FromResult(new GetNotesPerTopicReply
+            {
+                Notes = { xmlService.GetNotesPerTopic(request.Topic) } // Get the list of notes for the specified topic from the XML file using the XMLService and return it in the response
+            });
+        }
     }
 }

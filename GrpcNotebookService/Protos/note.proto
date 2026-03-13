@@ -6,7 +6,12 @@ package note;
 
 service NoteService {
 	rpc CreateNote (NoteRequest) returns (NoteReply);
+	rpc GetTopics (GetTopicsRequest) returns (GetTopicsReply);
+	rpc GetNotesPerTopic (GetNotesPerTopicRequest) returns (GetNotesPerTopicReply);
 }
+
+//CreateNote
+////////////////////////////////////////////////////////////////////////////////////////////
 
 message NoteRequest {
 	string topic = 1;
@@ -17,4 +22,25 @@ message NoteRequest {
 
 message NoteReply {
 	string message = 1;
+}
+
+//GetTopics
+////////////////////////////////////////////////////////////////////////////////////////////
+
+message GetTopicsRequest {
+}
+
+message GetTopicsReply {
+	repeated string topics = 1;
+}
+
+//GetNotesPerTopic
+////////////////////////////////////////////////////////////////////////////////////////////
+
+message GetNotesPerTopicRequest {
+	string topic = 1;
+}
+
+message GetNotesPerTopicReply {
+	repeated NoteRequest notes = 1;
 }
