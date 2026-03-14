@@ -3,7 +3,7 @@ using GrpcNotebookService.XML;
 
 namespace GrpcNotebookService.Services
 {
-    public class AddNewNote(ILogger<AddNewNote> logger, XMLService xmlService) : NoteService.NoteServiceBase
+    public class NoteOperations(ILogger<NoteOperations> logger, XMLService xmlService) : NoteService.NoteServiceBase
     {
         public override Task<NoteReply> CreateNote(NoteRequest request, ServerCallContext context)
         {

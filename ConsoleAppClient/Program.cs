@@ -31,6 +31,7 @@ internal class Program
                 case "3": // Exit
                     Console.WriteLine("Press any key to exit client....");
                     Console.ReadLine();
+                    channel.Dispose();
                     return;
 
                 default: // Invalid input
