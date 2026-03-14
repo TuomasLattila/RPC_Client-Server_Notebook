@@ -19,12 +19,13 @@ internal class Program
             switch (input) 
             {
                 case "1": // Create new note
-                    await SendNote(client, CreateNewNote()); // Get note info from user and send it to server
+                    await SendNote(client, CreateNewNote()); // Get note info from user, create a new NoteRequest object and send it to server
                     break;
 
                 case "2": // Read notes
-                    await GetTopics(client); // Get topics from server and print them
-                    await GetNotesPerTopic(client, Console.ReadLine() ?? ""); // Get notes for the specified topic from server and print them
+                    var topic = await GetTopics(client); // Get topics from server and print them
+                    if (topic == null) { break; }
+                    await GetNotesPerTopic(client, topic); // Get notes for the specified topic (user chosen) from server and print them.
                     break;
 
                 case "3": // Exit
@@ -39,65 +40,72 @@ internal class Program
         }
     }
 
-    private static string? MainLoop() // Show menu and get user input
+    // Print menu and get user input
+    private static string? MainLoop()
     {
-        Console.WriteLine("\nMenu:");
+        Console.WriteLine("Menu:");
         Console.WriteLine("1. Write new note");
         Console.WriteLine("2. Read notes");
         Console.WriteLine("3. Exit");
         return Console.ReadLine();
     }
 
-    private static NoteRequest CreateNewNote() // Get note info from user and return it as NoteRequest object
+    // Get note info from user and create a new NoteRequest object
+    private static NoteRequest CreateNewNote()
     {
-        NoteRequest newNote = new();
-        Console.WriteLine("Enter note topic:");
+        NoteRequest newNote = new(); // Create new NoteRequest object which is defined in Protos/Note.proto on the server
+        Console.WriteLine("\nEnter note topic:");
         newNote.Topic = Console.ReadLine() ?? "";
-        Console.WriteLine("Enter note title:");
+        Console.WriteLine("\nEnter note title:");
         newNote.Title = Console.ReadLine() ?? "";
-        Console.WriteLine("Enter note text:");
+        Console.WriteLine("\nEnter note text:");
         newNote.Text = Console.ReadLine() ?? "";
         newNote.Timestamp = DateTime.UtcNow.ToString("MM/dd/yy - HH:mm:ss", CultureInfo.InvariantCulture);
         return newNote;
     }
 
-    private static async Task SendNote(NoteService.NoteServiceClient client, NoteRequest newNote) // Send new note to server and print response
+    // Send the specified note to server and print the response message
+    private static async Task SendNote(NoteService.NoteServiceClient client, NoteRequest newNote)
     {
         try
         {
-            var reply = await client.CreateNoteAsync(newNote);
-            Console.WriteLine(reply.Message);
+            var reply = await client.CreateNoteAsync(newNote); // gRPC to remote server procedure 'CreateNote'
+            Console.WriteLine("\n"+reply.Message+"\n");
         }
         catch (Exception e) { Console.WriteLine($"Exception oquired: {e}"); }
     }
 
-    private static async Task GetTopics(NoteService.NoteServiceClient client) // Get topics from server and print them
+    // Get topics from server and print them
+    private static async Task<string?> GetTopics(NoteService.NoteServiceClient client)
     {
         try
         {
-            var reply = await client.GetTopicsAsync(new GetTopicsRequest());
-            Console.WriteLine("Choose topic by writing the topic name:");
+            var reply = await client.GetTopicsAsync(new GetTopicsRequest()); // gRPC to remote server procedure 'GetTopics'
+            Console.WriteLine("\nChoose topic number:");
             for (int i = 1; i <= reply.Topics.Count; i++)
             {
                 Console.WriteLine($"{i}. {reply.Topics[i-1]}");
             }
+            if (!int.TryParse(Console.ReadLine(), out int topicIndex)) { Console.WriteLine("\nWrong input!\n"); return null; } //Throw exeption if can't parsse integer
+            return reply.Topics[topicIndex-1]; // return the chosen topic as string value
         }
-        catch (Exception e) { Console.WriteLine($"Exception oquired: {e}"); }
+        catch (Exception e) { Console.WriteLine($"Exception oquired: {e}"); return null; }
     }
 
-    private static async Task GetNotesPerTopic(NoteService.NoteServiceClient client, string topic) // Get notes for the specified topic from server and print them
+    // Get notes for the specified topic from server and print them
+    private static async Task GetNotesPerTopic(NoteService.NoteServiceClient client, string topic)
     {
         try
         {
-            var reply = await client.GetNotesPerTopicAsync(new GetNotesPerTopicRequest { Topic = topic });
-            
+            var reply = await client.GetNotesPerTopicAsync(new GetNotesPerTopicRequest { Topic = topic }); // gRPC to remote server procedure 'GetNotesPerTopic'
+
             if (reply.Notes.Count == 0) // No notes for the specified topic
             {
-                Console.WriteLine($"No notes for topic of '{topic}' found");
+                Console.WriteLine($"\nNo notes for topic of '{topic}' found\n");
                 return;
             }
 
-            Console.WriteLine($"Notes for topic of {topic}:\n");
+            Console.WriteLine($"\nNotes for topic of {topic}:\n");
             foreach (var note in reply.Notes) // Print each note
             {
                 Console.WriteLine($"Title: {note.Title}\nText: {note.Text}\nTimestamp: {note.Timestamp}\n");

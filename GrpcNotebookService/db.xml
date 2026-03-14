@@ -26,4 +26,26 @@
       <timestamp>03/13/26 - 06:35:15</timestamp>
     </note>
   </topic>
+  <topic name="Stocks">
+    <note name="AI bubble">
+      <text>I think AI stocks are way too respected</text>
+      <timestamp>03/14/26 - 09:32:37</timestamp>
+    </note>
+  </topic>
+  <topic name="School work">
+    <note name="Mathematics">
+      <text>TODO: task1, task2, and taks5</text>
+      <timestamp>03/14/26 - 09:35:59</timestamp>
+    </note>
+    <note name="Biology">
+      <text>TODO: task2</text>
+      <timestamp>03/14/26 - 09:39:27</timestamp>
+    </note>
+  </topic>
+  <topic name="Turtles">
+    <note name="Old kids TV-series">
+      <text>When I was kid, I used to watch the Turtles TV-series...</text>
+      <timestamp>03/14/26 - 09:45:39</timestamp>
+    </note>
+  </topic>
 </data>
