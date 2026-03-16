@@ -35,7 +35,7 @@ internal class Program
                     NoteRequest? reply = await GetWikiArticle(wikiClient, Console.ReadLine());
                     if (reply == null) { break; }
                     
-                    Console.WriteLine("Do you want to save this summary to existing note topic? (y/n)");
+                    Console.WriteLine("Do you want to append this summary to existing note topic? (y/n)");
                     if (Console.ReadLine()?.ToLower() == "y")
                     {
                         var choise = await GetTopics(client); // Get topics from server and print them

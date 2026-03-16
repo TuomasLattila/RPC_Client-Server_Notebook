@@ -1,17 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <data>
   <topic name="F1 racers">
-    <note name="Lewis Hamilton">
-      <text>Lewis Hamilton has won F1 cahmpionship atleast 5 times?</text>
-      <timestamp>03/16/26 - 17:10:40</timestamp>
-    </note>
     <note name="Kimi Räikkönen">
-      <text>Kimi-Matias Räikkönen is a Finnish racing and rally driver who competed in Formula One between 2001 and 2021, and the World Rally Championship from 2009 to 2011. Nicknamed "the Iceman", Räikkönen won the Formula One World Drivers' Championship in 2007 with Ferrari, and won 21 Grands Prix across 19 seasons.</text>
-      <timestamp>03/16/26 - 17:11:10</timestamp>
+      <text>Kimi Räikkönen is a finnish F1 Driver</text>
+      <timestamp>03/16/26 - 17:32:47</timestamp>
+    </note>
+    <note name="Lewis Hamilton">
+      <text>Sir Lewis Carl Davidson Hamilton is a British racing driver who competes in Formula One for Ferrari. Hamilton has won a joint-record seven Formula One World Drivers' Championship titles—tied with Michael Schumacher—and holds the records for most wins (105), pole positions (104), and podium finishes (202), among others.</text>
+      <timestamp>03/16/26 - 17:33:57</timestamp>
     </note>
     <note name="Max Verstappen">
       <text>Max Emilian Verstappen is a Dutch and Belgian racing driver who competes under the Dutch flag in Formula One for Red Bull Racing. Verstappen has won four Formula One World Drivers' Championship titles, which he won consecutively from 2021 to 2024 with Red Bull, and has won 71 Grands Prix across 12 seasons.</text>
-      <timestamp>03/16/26 - 17:17:35</timestamp>
+      <timestamp>03/16/26 - 18:12:02</timestamp>
+    </note>
+  </topic>
+  <topic name="Cars">
+    <note name="F40 Ferrari">
+      <text>Best car!</text>
+      <timestamp>03/16/26 - 18:12:58</timestamp>
     </note>
   </topic>
 </data>

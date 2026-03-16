@@ -13,8 +13,6 @@ namespace GrpcNotebookService.XML
     public class XMLService
     {
         /// TODO:
-        /// - Implement locking mechanism to prevent modidying the xml document by multiple threads at the same time
-        /// - Implement other needed methods
         /// - 
         ///////////////// 
 
