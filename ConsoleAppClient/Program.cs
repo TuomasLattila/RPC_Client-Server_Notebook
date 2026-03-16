@@ -12,6 +12,7 @@ internal class Program
         // The port number must match the port of the gRPC server.
         using var channel = GrpcChannel.ForAddress("https://localhost:7101");
         var client = new NoteService.NoteServiceClient(channel);
+        var wikiClient = new WikiService.WikiServiceClient(channel);
 
         while (true)
         {
@@ -28,7 +29,12 @@ internal class Program
                     await GetNotesPerTopic(client, topic); // Get notes for the specified topic (user chosen) from server and print them.
                     break;
 
-                case "3": // Exit
+                case "3":
+                    var reply = await wikiClient.QueryWikiArticleAsync(new ArticleRequest { Article = "C Sharp (programming language)" }); //
+                    Console.WriteLine(reply);
+                    break;
+
+                case "4": // Exit
                     Console.WriteLine("Press any key to exit client....");
                     Console.ReadLine();
                     channel.Dispose();
@@ -47,7 +53,8 @@ internal class Program
         Console.WriteLine("Menu:");
         Console.WriteLine("1. Write new note");
         Console.WriteLine("2. Read notes");
-        Console.WriteLine("3. Exit");
+        Console.WriteLine("3. Fetch Wikipedia API for topic 'C#'");
+        Console.WriteLine("4. Exit");
         return Console.ReadLine();
     }
 

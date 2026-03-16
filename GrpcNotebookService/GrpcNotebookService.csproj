@@ -8,6 +8,7 @@
 
   <ItemGroup>
 	<Protobuf Include="Protos\note.proto" GrpcServices="Server" />
+	<Protobuf Include="Protos\wikipedia.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

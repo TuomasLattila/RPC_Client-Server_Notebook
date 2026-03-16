@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "ConsoleAppClient";
+
+package wikipedia;
+
+service WikiService {
+	rpc QueryWikiArticle (ArticleRequest) returns (ArticleReply);
+}
+
+// QueryWikiTopic
+/////////////////////////////////////////////////////////////////////////
+
+message ArticleRequest {
+	string article = 1;
+}
+
+message ArticleReply {
+	string article = 1;
+	string content = 2;
+	string link = 3;
+}
