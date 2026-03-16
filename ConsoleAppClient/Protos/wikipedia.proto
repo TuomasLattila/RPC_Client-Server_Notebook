@@ -20,3 +20,4 @@ message ArticleReply {
 	string content = 2;
 	string link = 3;
 }
+

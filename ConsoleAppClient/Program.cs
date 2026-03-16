@@ -1,6 +1,7 @@
 ﻿using ConsoleAppClient;
 using Grpc.Net.Client;
 using System.Globalization;
+using System.Runtime.Intrinsics.Arm;
 
 internal class Program
 {
@@ -29,9 +30,21 @@ internal class Program
                     await GetNotesPerTopic(client, topic); // Get notes for the specified topic (user chosen) from server and print them.
                     break;
 
-                case "3":
-                    var reply = await wikiClient.QueryWikiArticleAsync(new ArticleRequest { Article = "C Sharp (programming language)" }); //
-                    Console.WriteLine(reply);
+                case "3": // Query wikipedia article smmary and ask user to save it
+                    Console.WriteLine("\nSearch article:");
+                    NoteRequest? reply = await GetWikiArticle(wikiClient, Console.ReadLine());
+                    if (reply == null) { break; }
+                    
+                    Console.WriteLine("Do you want to save this summary to existing note topic? (y/n)");
+                    if (Console.ReadLine()?.ToLower() == "y")
+                    {
+                        var choise = await GetTopics(client); // Get topics from server and print them
+                        if (choise == null) { break; }
+                        reply.Topic = choise;
+                        reply.Timestamp = DateTime.UtcNow.ToString("MM/dd/yy - HH:mm:ss", CultureInfo.InvariantCulture);
+                        await SendNote(client, reply);
+                    }
+                    else { Console.WriteLine("\nWikipedia article summary not saved!\n"); }
                     break;
 
                 case "4": // Exit
@@ -41,7 +54,7 @@ internal class Program
                     return;
 
                 default: // Invalid input
-                    Console.WriteLine("Invalid input, try again...");
+                    Console.WriteLine("\nInvalid input, try again...");
                     break;
             }
         }
@@ -53,7 +66,7 @@ internal class Program
         Console.WriteLine("Menu:");
         Console.WriteLine("1. Write new note");
         Console.WriteLine("2. Read notes");
-        Console.WriteLine("3. Fetch Wikipedia API for topic 'C#'");
+        Console.WriteLine("3. Get Wikipedia article summary");
         Console.WriteLine("4. Exit");
         return Console.ReadLine();
     }
@@ -89,12 +102,14 @@ internal class Program
         try
         {
             var reply = await client.GetTopicsAsync(new GetTopicsRequest()); // gRPC to remote server procedure 'GetTopics'
+            if (reply.Topics.Count == 0) { Console.WriteLine("\nNo topics found!\n"); return null; }
             Console.WriteLine("\nChoose topic number:");
             for (int i = 1; i <= reply.Topics.Count; i++)
             {
                 Console.WriteLine($"{i}. {reply.Topics[i-1]}");
             }
-            if (!int.TryParse(Console.ReadLine(), out int topicIndex)) { Console.WriteLine("\nWrong input!\n"); return null; } //Throw exeption if can't parsse integer
+            if (!int.TryParse(Console.ReadLine(), out int topicIndex)) { Console.WriteLine("\nWrong input!\n"); return null; } //Return null if can't parsse integer
+            if (topicIndex > reply.Topics.Count) { Console.WriteLine("\nOut of index!\n"); return null; } //Return null if answer out of index
             return reply.Topics[topicIndex-1]; // return the chosen topic as string value
         }
         catch (Exception e) { Console.WriteLine($"Exception oquired: {e}"); return null; }
@@ -120,5 +135,18 @@ internal class Program
             }
         }
         catch (Exception e) { Console.WriteLine($"Exception oquired: {e}"); }
+    }
+
+    private static async Task<NoteRequest?> GetWikiArticle(WikiService.WikiServiceClient client, string? article)
+    {
+        if (article == null) { return null; }
+        try
+        {
+            var res = await client.QueryWikiArticleAsync(new ArticleRequest { Article = article }); //gRPC to remote procedure 'GetWikiArticle'
+            Console.WriteLine($"\nArticle: {res.Article} \nSummary: {res.Content} \nLink: {res.Link}\n");
+
+            return new NoteRequest{ Title=res.Article, Text=res.Content };
+        }
+        catch (Exception e) { Console.WriteLine(e.Message); return null; }
     }
 }

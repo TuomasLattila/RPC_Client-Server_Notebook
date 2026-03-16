@@ -1,59 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <data>
-  <topic name="Test topic: Animals">
-    <note name="cats better than dogs">
-      <text>Cats are funny</text>
-      <timestamp>03/12/26 - 10:09:52</timestamp>
+  <topic name="F1 racers">
+    <note name="Lewis Hamilton">
+      <text>Lewis Hamilton has won F1 cahmpionship atleast 5 times?</text>
+      <timestamp>03/16/26 - 17:10:40</timestamp>
     </note>
-    <note name="undulats are social animals">
-      <text>undulds are known to need partner, otherwise they are depressed</text>
-      <timestamp>03/12/26 - 10:13:26</timestamp>
+    <note name="Kimi Räikkönen">
+      <text>Kimi-Matias Räikkönen is a Finnish racing and rally driver who competed in Formula One between 2001 and 2021, and the World Rally Championship from 2009 to 2011. Nicknamed "the Iceman", Räikkönen won the Formula One World Drivers' Championship in 2007 with Ferrari, and won 21 Grands Prix across 19 seasons.</text>
+      <timestamp>03/16/26 - 17:11:10</timestamp>
     </note>
-  </topic>
-  <topic name="Test topic: cars">
-    <note name="ferrari F40 is sick">
-      <text>please sell me F40!!!!</text>
-      <timestamp>03/12/26 - 10:17:25</timestamp>
-    </note>
-  </topic>
-  <topic name="PCs">
-    <note name="What GPU should I get in 2026?">
-      <text>HI, I am PC enthusiast and I like to play PUBG. What GPU is best for that?</text>
-      <timestamp>03/13/26 - 06:34:00</timestamp>
-    </note>
-    <note name="What CPU is most value in 2026?">
-      <text>Hello, I am building a new PC, and I am looking for best value CPU for gaming in 2026.</text>
-      <timestamp>03/13/26 - 06:35:15</timestamp>
-    </note>
-    <note name="My PC is insane">
-      <text>Specs: intel 14th gen 14700k, nvidia 4070 super, 32gb DDR5</text>
-      <timestamp>03/14/26 - 11:38:07</timestamp>
-    </note>
-    <note name="Intel is shit!!!">
-      <text>I just read from mikrobitti news that intel 14th gen CPUs are frying themselves from the box!!!! XD</text>
-      <timestamp>03/14/26 - 11:39:42</timestamp>
-    </note>
-  </topic>
-  <topic name="Stocks">
-    <note name="AI bubble">
-      <text>I think AI stocks are way too respected</text>
-      <timestamp>03/14/26 - 09:32:37</timestamp>
-    </note>
-  </topic>
-  <topic name="School work">
-    <note name="Mathematics">
-      <text>TODO: task1, task2, and taks5</text>
-      <timestamp>03/14/26 - 09:35:59</timestamp>
-    </note>
-    <note name="Biology">
-      <text>TODO: task2</text>
-      <timestamp>03/14/26 - 09:39:27</timestamp>
-    </note>
-  </topic>
-  <topic name="Turtles">
-    <note name="Old kids TV-series">
-      <text>When I was kid, I used to watch the Turtles TV-series...</text>
-      <timestamp>03/14/26 - 09:45:39</timestamp>
+    <note name="Max Verstappen">
+      <text>Max Emilian Verstappen is a Dutch and Belgian racing driver who competes under the Dutch flag in Formula One for Red Bull Racing. Verstappen has won four Formula One World Drivers' Championship titles, which he won consecutively from 2021 to 2024 with Red Bull, and has won 71 Grands Prix across 12 seasons.</text>
+      <timestamp>03/16/26 - 17:17:35</timestamp>
     </note>
   </topic>
 </data>

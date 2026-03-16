@@ -4,7 +4,7 @@ using GrpcNotebookService.XML;
 
 namespace GrpcNotebookService.Services
 {
-    public class WikiOperations(ILogger<WikiOperations> logger, XMLService xmlService, WikiClient wikiClient) : WikiService.WikiServiceBase
+    public class WikiOperations(ILogger<WikiOperations> logger, WikiClient wikiClient) : WikiService.WikiServiceBase
     {
         public override async Task<ArticleReply> QueryWikiArticle(ArticleRequest request, ServerCallContext context)
         {
